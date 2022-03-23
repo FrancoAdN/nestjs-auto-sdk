@@ -1,0 +1,40 @@
+{
+  "name": "nestjs-auto-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write .",
+    "build": "tsc -p tsconfig.build.json",
+    "lint-md": "remark .",
+    "format-md": "remark . -o",
+    "format": "prettier --write \"lib/**/*.ts\" && npm run format-md",
+    "lint": "eslint -c .eslintrc.js --ext ts lib/ && npm run lint-md",
+    "lint:check": "eslint -c .eslintrc.js --ext .ts ./lib",
+    "lint:fix": "eslint -c .eslintrc.js --ext .ts ./lib --fix",
+    "test": "jest --runInBand",
+    "test:cov": "jest --coverage",
+    "start": "ts-node -r tsconfig-paths/register lib/main.ts && npm run prettier"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancoAdN/nestjs-auto-sdk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrancoAdN/nestjs-auto-sdk/issues"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "typescript": "^4.6.2",
+    "fs-extra": "^10.0.1"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.9.0"
+  }
+}

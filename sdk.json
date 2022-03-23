@@ -1,0 +1,183 @@
+{
+  "types": {
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "deletedBy": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "type": "string"
+        },
+        "globalId": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "number"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "flagged": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "enum",
+          "enum": ["read", "resolved"]
+        },
+        "totalReplies": {
+          "type": "number"
+        },
+        "editedAt": {
+          "type": "string"
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "createdAt",
+        "createdBy",
+        "updatedAt",
+        "updatedBy",
+        "deleted",
+        "deletedBy",
+        "deletedAt",
+        "globalId",
+        "sequence",
+        "userId",
+        "userName",
+        "body",
+        "flagged",
+        "mediaContentId",
+        "replies",
+        "status",
+        "editedAt",
+        "mediaContent",
+        "recipients"
+      ]
+    },
+    "Conversation": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "createdBy": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        },
+        "updatedBy": {
+          "type": "string"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "deletedBy": {
+          "type": "string"
+        },
+        "deletedAt": {
+          "type": "string"
+        },
+        "globalId": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "application": {
+          "type": "string"
+        },
+        "startedAt": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "banned": {
+          "type": "boolean"
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/types/Comment"
+          }
+        },
+        "totalComments": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "createdAt",
+        "createdBy",
+        "updatedAt",
+        "updatedBy",
+        "deleted",
+        "deletedBy",
+        "deletedAt",
+        "globalId",
+        "contentType",
+        "application",
+        "startedAt",
+        "active",
+        "banned",
+        "comments"
+      ]
+    }
+  },
+
+  "clients": {
+    "ConversationClient": {
+      "findByGlobal": {
+        "endpoint": "conversations.findByGlobalId",
+        "httpVerb": "GET",
+        "param": {
+          "propName": "id",
+          "propType": "string"
+        },
+        "returns": {
+          "type": "object",
+          "$ref": "#/types/Conversation",
+          "isArray": true
+        }
+      },
+      "markAsInactive": {
+        "endpoint": "conversations.markAsInactive",
+        "httpVerb": "GET",
+        "param": {
+          "propName": "id",
+          "propType": "string"
+        },
+        "returns": {
+          "type": "void"
+        }
+      }
+    }
+  }
+}
