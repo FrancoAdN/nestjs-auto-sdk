@@ -2,6 +2,13 @@ import * as fs from 'fs';
 import { CreateInterfaceService } from './services/interface.service';
 import { exportStaticFiles } from './helpers/create-file.helper';
 
+function handleErrors(err) {
+  console.error(err);
+  process.exit(1);
+}
+
+process.on('uncaughtException', handleErrors);
+
 async function init(pathToFile: string) {
   exportStaticFiles();
   const source = JSON.parse(fs.readFileSync(pathToFile, 'utf8'));
