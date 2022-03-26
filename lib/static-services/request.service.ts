@@ -1,5 +1,15 @@
 import axios, { AxiosRequestConfig, Method } from 'axios';
 
+export interface RequestOptions {
+  param?: any;
+  query?: [
+    {
+      propName: string;
+      value: string;
+    },
+  ];
+}
+
 export class RequestService {
   private baseUrl: string;
   private defaultHeaders: object;
@@ -31,12 +41,28 @@ export class RequestService {
     };
   }
 
-  get(url: string, headers?: any) {
+  get(url: string, options: RequestOptions, headers?: any) {
+    if (options.param) url = `${url}/${options.param}`;
+    else if (options.query) {
+      const queryParams = options.query.map(
+        (qry) => `?${qry.propName}=` + qry.value,
+      );
+      url = `${url}${queryParams.join()}`;
+    }
+
     const config: AxiosRequestConfig = this.getAxiosConfig(url, 'GET', headers);
     return axios(config);
   }
 
-  post(url: string, data: any, headers?: any) {
+  post(url: string, options: RequestOptions, data: any, headers?: any) {
+    if (options.param) url = `${url}/${options.param}`;
+    else if (options.query) {
+      const queryParams = options.query.map(
+        (qry) => `?${qry.propName}=` + qry.value,
+      );
+      url = `${url}${queryParams.join()}`;
+    }
+
     let config: AxiosRequestConfig = this.getAxiosConfig(url, 'POST', headers);
     config = {
       ...config,
@@ -45,7 +71,15 @@ export class RequestService {
     return axios(config);
   }
 
-  put(url: string, data: any, headers?: any) {
+  put(url: string, options: RequestOptions, data: any, headers?: any) {
+    if (options.param) url = `${url}/${options.param}`;
+    else if (options.query) {
+      const queryParams = options.query.map(
+        (qry) => `?${qry.propName}=` + qry.value,
+      );
+      url = `${url}${queryParams.join()}`;
+    }
+
     let config: AxiosRequestConfig = this.getAxiosConfig(url, 'PUT', headers);
     config = {
       ...config,
@@ -54,7 +88,15 @@ export class RequestService {
     return axios(config);
   }
 
-  patch(url: string, data: any, headers?: any) {
+  patch(url: string, options: RequestOptions, data: any, headers?: any) {
+    if (options.param) url = `${url}/${options.param}`;
+    else if (options.query) {
+      const queryParams = options.query.map(
+        (qry) => `?${qry.propName}=` + qry.value,
+      );
+      url = `${url}${queryParams.join()}`;
+    }
+
     let config: AxiosRequestConfig = this.getAxiosConfig(url, 'PATCH', headers);
     config = {
       ...config,
@@ -63,7 +105,14 @@ export class RequestService {
     return axios(config);
   }
 
-  delete(url: string, headers?: any) {
+  delete(url: string, options: RequestOptions, headers?: any) {
+    if (options.param) url = `${url}/${options.param}`;
+    else if (options.query) {
+      const queryParams = options.query.map(
+        (qry) => `?${qry.propName}=` + qry.value,
+      );
+      url = `${url}${queryParams.join()}`;
+    }
     const config: AxiosRequestConfig = this.getAxiosConfig(
       url,
       'DELETE',

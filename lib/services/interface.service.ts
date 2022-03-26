@@ -11,14 +11,14 @@ export class CreateInterfaceService {
   private static instance = false;
   private constructor(private readonly enumService: CreateEnumService) {}
 
-  static newInstance() {
+  static newInstance(): CreateInterfaceService {
     if (!this.instance) {
       this.instance = true;
       return new CreateInterfaceService(new CreateEnumService());
     }
   }
 
-  private createOne(name: string, schema: object) {
+  private createOne(name: string, schema: object): void {
     const imports: string[] = [];
 
     const properties: string = Object.keys(schema['properties'])
@@ -34,7 +34,7 @@ export class CreateInterfaceService {
           imports.push(
             `import { ${foundFile.reference} } from '${replaceRootDir(
               foundFile.path,
-            ).replace('.ts', '')}'`,
+            ).replace('.ts', '')}';`,
           );
 
           return `${prop}: ${foundFile.reference}${arrayAttr};`;
@@ -70,9 +70,7 @@ export class CreateInterfaceService {
     CreateFile(filename, content, 'interfaces');
   }
 
-  createMultiple(source: object) {
-    for (let key of Object.keys(source)) {
-      this.createOne(key, source[key]);
-    }
+  createMultiple(source: object): void {
+    Object.keys(source).forEach((key) => this.createOne(key, source[key]));
   }
 }
