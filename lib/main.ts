@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import { CreateInterfaceService } from './services/interface.service';
 import { exportStaticFiles } from './helpers/create-file.helper';
+import { ClientService, CreateInterfaceService } from './services';
 
 function handleErrors(err) {
   console.error(err);
@@ -14,6 +14,8 @@ async function init(pathToFile: string) {
   const source = JSON.parse(fs.readFileSync(pathToFile, 'utf8'));
   const interfaceService = CreateInterfaceService.newInstance();
   interfaceService.createMultiple(source.types);
+  const clientService = ClientService.newInstance();
+  clientService.createMultiple(source.clients);
 }
 
 init('sdk.json');
