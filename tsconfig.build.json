@@ -2,6 +2,9 @@
   "extends": "./tsconfig.json",
   "exclude": ["node_modules", "test", "**/*spec.ts", "dist"],
   "compilerOptions": {
-    "sourceMap": true
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   }
+
 }

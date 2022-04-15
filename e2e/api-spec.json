@@ -1,0 +1,207 @@
+{
+  "types": {
+    "Cat": {
+      "name": "string",
+      "age": "number",
+      "breed": "string",
+      "tags": "string[]",
+      "createdAt": "Date",
+      "urls": "string[]",
+      "enum": "string",
+      "enumArr": "string"
+    },
+    "CreateCatDto": {
+      "name": "string",
+      "age": "number",
+      "breed": "string",
+      "tags": "string[]",
+      "createdAt": "Date",
+      "urls": "string[]",
+      "enum": "string",
+      "enumArr": "string",
+      "tag": "TagDto"
+    }
+  },
+  "clients": {
+    "DogsClient": {
+      "create": {
+        "endpoint": "/",
+        "httpVerb": "POST",
+        "returns": {
+          "type": "#/types/Cat",
+          "isArray": false
+        },
+        "body": {
+          "$ref": "#/types/CreateCatDto",
+          "isArray": false
+        }
+      },
+      "findOne": {
+        "endpoint": ":id",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "#/types/Cat",
+          "isArray": false
+        }
+      },
+      "findAll": {
+        "endpoint": "/",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "findAllWithExplicitQuery": {
+        "endpoint": "explicit-query",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "findAllBulk": {
+        "endpoint": "bulk",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "createBulk": {
+        "endpoint": "bulk",
+        "httpVerb": "POST",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "createAsFormData": {
+        "endpoint": "as-form-data",
+        "httpVerb": "POST",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "getSite": {
+        "endpoint": "site*",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "getWithEnumParam": {
+        "endpoint": "with-enum/:type",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        },
+        "param": {
+          "propName": "type",
+          "propType": "string"
+        }
+      },
+      "findRandom": {
+        "endpoint": "with-random-query",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "#/types/undefined",
+          "isArray": false
+        }
+      }
+    },
+    "CatsClient": {
+      "create": {
+        "endpoint": "cats/",
+        "httpVerb": "POST",
+        "returns": {
+          "type": "#/types/Cat",
+          "isArray": false
+        },
+        "body": {
+          "$ref": "#/types/CreateCatDto",
+          "isArray": false
+        }
+      },
+      "findOne": {
+        "endpoint": "cats/:id",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "#/types/Cat",
+          "isArray": false
+        }
+      },
+      "findAll": {
+        "endpoint": "cats/",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "findAllWithExplicitQuery": {
+        "endpoint": "cats/explicit-query",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "findAllBulk": {
+        "endpoint": "cats/bulk",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "createBulk": {
+        "endpoint": "cats/bulk",
+        "httpVerb": "POST",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "createAsFormData": {
+        "endpoint": "cats/as-form-data",
+        "httpVerb": "POST",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "getSite": {
+        "endpoint": "cats/site*",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        }
+      },
+      "getWithEnumParam": {
+        "endpoint": "cats/with-enum/:type",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "void",
+          "isArray": false
+        },
+        "param": {
+          "propName": "type",
+          "propType": "string"
+        }
+      },
+      "findRandom": {
+        "endpoint": "cats/with-random-query",
+        "httpVerb": "GET",
+        "returns": {
+          "type": "#/types/undefined",
+          "isArray": false
+        }
+      }
+    }
+  }
+}
