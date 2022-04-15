@@ -1,0 +1,19 @@
+export const DECORATORS_PREFIX = 'autoSdk';
+export const DECORATORS = {
+  SDK_OPERATION: `${DECORATORS_PREFIX}/sdkOperation`,
+  SDK_RESPONSE: `${DECORATORS_PREFIX}/sdkResponse`,
+  SDK_PRODUCES: `${DECORATORS_PREFIX}/sdkProduces`,
+  SDK_CONSUMES: `${DECORATORS_PREFIX}/sdkConsumes`,
+  SDK_TAGS: `${DECORATORS_PREFIX}/sdkUseTags`,
+  SDK_PARAMETERS: `${DECORATORS_PREFIX}/sdkParameters`,
+  SDK_HEADERS: `${DECORATORS_PREFIX}/sdkHeaders`,
+  SDK_MODEL_PROPERTIES: `${DECORATORS_PREFIX}/sdkModelProperties`,
+  SDK_MODEL_PROPERTIES_ARRAY: `${DECORATORS_PREFIX}/sdkModelPropertiesArray`,
+  SDK_SECURITY: `${DECORATORS_PREFIX}/sdkSecurity`,
+  SDK_EXCLUDE_ENDPOINT: `${DECORATORS_PREFIX}/sdkExcludeEndpoint`,
+  SDK_EXCLUDE_CONTROLLER: `${DECORATORS_PREFIX}/sdkExcludeController`,
+  SDK_EXTRA_MODELS: `${DECORATORS_PREFIX}/sdkExtraModels`,
+  SDK_EXTENSION: `${DECORATORS_PREFIX}/sdkExtension`,
+};
+
+export const METADATA_CLASS = 'MetadataSchema';
