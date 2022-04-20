@@ -9,32 +9,82 @@
 
 import { MetadataSchema } from '../temp/metadata-schema';
 
-export interface ApiPropertyOptions {
-  // extends Omit<SchemaObjectMetadata, 'name' | 'enum'> {
-  // name?: string;
-  // enum?: any[] | Record<string, any>;
-  // enumName?: string;
-  // items?: any;
-  type: string;
-  required?: boolean;
+export function getEnumValues(enumType: any): string[] | number[] {
+  if (Array.isArray(enumType)) {
+    return enumType as string[];
+  }
+  if (typeof enumType !== 'object') {
+    return [];
+  }
+
+  const values = [];
+  const uniqueValues = {};
+
+  for (const key in enumType) {
+    const value = enumType[key];
+    // filter out cases where enum key also becomes its value (A: B, B: A)
+    if (
+      !uniqueValues.hasOwnProperty(value) &&
+      !uniqueValues.hasOwnProperty(key)
+    ) {
+      values.push(value);
+      uniqueValues[value] = value;
+    }
+  }
+  return values;
 }
 
-export function SdkProperty(options: ApiPropertyOptions): PropertyDecorator {
+export interface SdkPropertyOptions {
+  type?: string;
+  required?: boolean;
+  enum?: any;
+}
+
+export function SdkProperty(options?: SdkPropertyOptions): PropertyDecorator {
+  if (options && options.enum) {
+    const values = getEnumValues(options.enum);
+    console.log(values, options.enum.name);
+  }
+
   return (target: object, propertyKey: string) => {
     const className = target.constructor.name;
     const extendedClass = Object.getPrototypeOf(target.constructor).name;
+    const propType: string = Reflect.getMetadata(
+      'design:type',
+      target,
+      propertyKey,
+    ).name;
+
+    let type: any = {
+      required: options ? options.required || false : false,
+    };
+
+    if (propType !== Array.name) {
+      type = {
+        ...type,
+        type: propType.toLowerCase(),
+      };
+    } else {
+      type = {
+        ...type,
+        type: options
+          ? `${options.type.toLowerCase() || 'undefined'}[]`
+          : 'undefined[]',
+      };
+    }
 
     const previousMetadata = Reflect.getMetadata('types', MetadataSchema);
 
     const metadataToSave = { ...previousMetadata };
+    //console.log(propertyKey, typeof propertyKey);
 
     if (previousMetadata && previousMetadata[className])
-      metadataToSave[className][propertyKey] = options.type;
+      metadataToSave[className][propertyKey] = type;
     else {
       metadataToSave[className] = {};
       if (extendedClass)
         metadataToSave[className]['#classExtendsFrom'] = extendedClass;
-      metadataToSave[className][propertyKey] = options.type;
+      metadataToSave[className][propertyKey] = type;
     }
     Reflect.defineMetadata('types', metadataToSave, MetadataSchema);
   };

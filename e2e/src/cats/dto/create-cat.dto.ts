@@ -3,31 +3,31 @@ import { LettersEnum } from './pagination-query.dto';
 import { TagDto } from './tag.dto';
 
 export class CreateCatDto {
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty()
   readonly name: string;
 
-  @SdkProperty({ type: 'number', required: true })
+  @SdkProperty()
   readonly age: number;
 
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty()
   readonly breed: string;
 
-  @SdkProperty({ type: 'string[]', required: true })
+  @SdkProperty({ required: false, type: String.name })
   readonly tags?: string[];
 
-  @SdkProperty({ type: 'Date', required: true })
+  @SdkProperty()
   createdAt: Date;
 
-  @SdkProperty({ type: 'string[]', required: true })
+  @SdkProperty({ required: false, type: String.name })
   readonly urls?: string[];
 
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty()
   readonly enum: LettersEnum;
 
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty()
   readonly enumArr: LettersEnum;
 
-  @SdkProperty({ type: 'TagDto', required: true })
+  @SdkProperty()
   readonly tag: TagDto;
 
   // nested: {

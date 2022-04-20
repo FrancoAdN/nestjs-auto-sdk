@@ -1,25 +1,76 @@
 {
   "types": {
     "Cat": {
-      "name": "string",
-      "age": "number",
-      "breed": "string",
-      "tags": "string[]",
-      "createdAt": "Date",
-      "urls": "string[]",
-      "enum": "string",
-      "enumArr": "string"
+      "name": {
+        "required": true,
+        "type": "string"
+      },
+      "age": {
+        "required": true,
+        "type": "number"
+      },
+      "breed": {
+        "required": true,
+        "type": "string"
+      },
+      "tags": {
+        "required": true,
+        "type": "string[]"
+      },
+      "createdAt": {
+        "required": true,
+        "type": "date"
+      },
+      "urls": {
+        "required": false,
+        "type": "string[]"
+      },
+      "enum": {
+        "required": true,
+        "type": "string"
+      },
+      "enumArr": {
+        "required": true,
+        "type": "string[]"
+      }
     },
     "CreateCatDto": {
-      "name": "string",
-      "age": "number",
-      "breed": "string",
-      "tags": "string[]",
-      "createdAt": "Date",
-      "urls": "string[]",
-      "enum": "string",
-      "enumArr": "string",
-      "tag": "TagDto"
+      "name": {
+        "required": false,
+        "type": "string"
+      },
+      "age": {
+        "required": false,
+        "type": "number"
+      },
+      "breed": {
+        "required": false,
+        "type": "string"
+      },
+      "tags": {
+        "required": false,
+        "type": "string[]"
+      },
+      "createdAt": {
+        "required": false,
+        "type": "date"
+      },
+      "urls": {
+        "required": false,
+        "type": "string[]"
+      },
+      "enum": {
+        "required": false,
+        "type": "string"
+      },
+      "enumArr": {
+        "required": false,
+        "type": "string"
+      },
+      "tag": {
+        "required": false,
+        "type": "tagdto"
+      }
     }
   },
   "clients": {
