@@ -1,27 +1,27 @@
 import { LettersEnum } from '../dto/pagination-query.dto';
 import { SdkProperty } from '../../../../lib';
 export class Cat {
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty({ required: true })
   name: string;
 
-  @SdkProperty({ type: 'number', required: true })
+  @SdkProperty({ required: true })
   age: number;
 
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty({ required: true })
   breed: string;
 
-  @SdkProperty({ type: 'string[]', required: true })
+  @SdkProperty({ required: true, type: String.name })
   tags?: string[];
 
-  @SdkProperty({ type: 'Date', required: true })
+  @SdkProperty({ required: true })
   createdAt: Date;
 
-  @SdkProperty({ type: 'string[]', required: false })
+  @SdkProperty({ required: false, type: String.name })
   urls?: string[];
 
-  @SdkProperty({ type: 'string', required: true })
+  @SdkProperty({ required: true })
   enum: LettersEnum;
 
-  @SdkProperty({ type: 'string', required: true })
-  enumArr: LettersEnum;
+  @SdkProperty({ required: true, type: String.name, enum: LettersEnum })
+  enumArr: LettersEnum[];
 }

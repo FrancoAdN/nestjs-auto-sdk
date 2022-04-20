@@ -7,8 +7,8 @@ export class CatsService {
   private readonly cats: Cat[] = [];
 
   create(cat: CreateCatDto): Cat {
-    this.cats.push(cat);
-    return cat;
+    this.cats.push(new Cat());
+    return new Cat();
   }
 
   findOne(id: number): Cat {
